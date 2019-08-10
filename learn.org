@@ -1,0 +1,143 @@
+* class 1 
+** book   
+   - Haskell函数式编程入门（第2版）
+     - https://www.zhihu.com/people/parker-liu/activities
+     - https://www.zhihu.com/people/yueqianren/activities
+   - 魔力haskell
+     - https://www.zhihu.com/people/winterland1989/following
+     - 清华大学Haskell课程 (韩冬)
+       - https://space.bilibili.com/18709997?from=search&seid=9698184678534150463
+   - haskell函数式程序设计
+   - haskell并行与并发编程
+** How to create the ide of the haksell
+*** Install stack
+    https://docs.haskellstack.org/en/stable/install_and_upgrade/
+    first run stack setup  
+    - windows (msys2)
+    - ubuntu (home/.stack/comfig.yaml)
+   
+    china source
+    - stackage 镜像使用帮助
+      - https://mirrors.tuna.tsinghua.edu.cn/help/stackage/
+      - https://mirrors.ustc.edu.cn/help/stackage.html
+*** Stack command
+    stack run (pack,cabal)
+    stack build
+    stack exec name
+    stack new projectName
+*** Install intero
+    stack install intero
+    - ubuntu 
+      - error:  cannot find -ltinfo
+        - sudo apt-get install libncurses5-dev
+*** IDE
+    - vs code  Haskero
+    - emacs spacemacs (vim emacs)
+      - layer 
+        - haskell 
+          - (haskell :variables haskell-completion-backend 'intero)
+        - auto-completion
+*** ghci
+    stack ghci
+    stack exec ghci
+** konw more of the haskell
+*** core thinking
+    - pure (parallel)
+    - unpure (concurrent)
+      - monad
+*** Features 
+**** Statically typed
+     javascript  +
+     python 
+     Why we need static type?
+***** Problem -> Models -> Types -> Functions
+      ADT
+      MaybeT IO Int -- monad transformer
+      StateT s (MaybeT IO ) Int
+**** Type inference (any code , type deriving)
+     add :: Int -> String
+     add = 1 + 1
+**** Purely functional
+     input a string  -> valid
+**** Parallel
+     res = map slove [...] 
+     res = map slove [...] `using` parList rseq   
+     -- haskell并行与并发编程
+**** Concurrent
+     stm
+     -- haskell并行与并发编程
+**** Lazy
+    fib :: [Integer]
+    fib = 1 : 1 : zipWith (+) fib (tail fib)
+    # f = take 5 $ sort  
+**** Packages
+     select haskell
+     know haskell
+     
+      # hight
+     think more
+     code less
+     --
+     length :: [a] -> Int
+     length :: Foldable a => t a -> Int
+*** Haskell caps  
+    Type signature
+    Type constructor
+    
+    function
+    var
+*** Type 
+    type 
+    desigen type
+    absluate type
+**** base type 
+     Int Bool Char Double Float Word8 Text ByteString
+**** create a new type
+     type Name = String
+     type Age = Int
+     type Address = String
+     data Person = Person String Int String
+
+     data Person = Person {
+       name :: Name
+     , age :: Age
+     , address :: Address
+     } deriving (Show,Read,FromJSON,ToJSON,Generic,Binary)
+     # instance Binary Person
+
+    -- pretty-simple 
+    -- pPrint
+
+    newtype Person = Person Int
+    
+    ADT 
+    data Result = Ok String | Error Int  +
+    data Person = Person Name Age        *
+
+
+    data Tree a = Leaf a | Node a (Tree a) (Tree a) 
+     deriving (Show,Read,FromJSON,ToJSON,Generic,Binary)
+
+    data Tree a = Leaf a | Node a [Tree a]
+
+--------------------------------------------
+    data Writer a = Writer String a
+    
+    data Writer = Writer String a
+*** function
+    -> 
+    t :: Int -> String
+    t i = show i
+
+*** part function
+*** class
+*** example 
+    fib :: [Integer]
+    fib = 1 : 1 : zipWith (+) fib (tail fib)
+    
+    quickSort :: [Int] -> [Int]
+    quickSort [] = []
+    quickSort [x] = [x]
+    quickSort (x:xs) = quick a ++ [x] ++ quick b
+       where (a,b) = (filter (<x) xs , filter (>=x) xs)
+
