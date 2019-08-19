@@ -1,4 +1,4 @@
-
+{-# LANGUAGE OverloadedStrings #-}
 import Data.List
 import Data.Ratio
 import Numeric
@@ -6,8 +6,28 @@ import System.Environment
 import Data.Scientific
 import Data.Number.Fixed
 import Control.Monad
+import qualified Data.Text as T
+import qualified Data.ByteString as BS
 
 type P = Fixed Prec500
+
+i :: Integer
+i = 30000000000000000000000
+
+st :: String
+st = "nice world"
+
+stt :: BS.ByteString
+stt = "nice world"
+
+tfunction :: Int -> String
+tfunction i = let i' = i + 1
+              in show  $ i' + j + k
+  where j = i + 1
+        k = j +1
+
+ttt :: T.Text
+ttt = "nice world"
 
 nums :: [P]
 nums = map (\i -> 2 * js i / js2 i) [0,1..]

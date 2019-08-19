@@ -140,4 +140,5 @@
     quickSort [x] = [x]
     quickSort (x:xs) = quick a ++ [x] ++ quick b
        where (a,b) = (filter (<x) xs , filter (>=x) xs)
-
+*** Monad
+    Monad 是一个自函子范畴上的幺半群
